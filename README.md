@@ -86,7 +86,7 @@ https://github.com/csuvis/CyberAssetGraphData
 
 ##### **图1. Node.csv 数据样本示例**
 
-![image-20240409123636041](picture\image-20240409123636041.png)
+![image-20240409123636041](picture/image-20240409123636041.png)
 
 
 
