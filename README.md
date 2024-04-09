@@ -310,3 +310,180 @@ Size of Final_Node dataset: (2371558, 4)
 进程已结束，退出代码为 0
 ```
 
+#### 3.2 Link.csv
+##### 1.读取数据&查看数据大小
+```
+Link_1:(600000, 3)
+Link_2:(600000, 3)
+Link_3:(600000, 3)
+Link_4:(600000, 3)
+Link_5:(600000, 3)
+Link_6:(286986, 3)
+Total data:3286986
+```
+##### 2.查看数据类型
+```
+Link_1:
+relation    object
+source      object
+target      object
+dtype: object
+Link_2:
+relation    object
+source      object
+target      object
+dtype: object
+Link_3:
+relation    object
+source      object
+target      object
+dtype: object
+Link_4:
+relation    object
+source      object
+target      object
+dtype: object
+Link_5:
+relation    object
+source      object
+target      object
+dtype: object
+Link_6:
+relation    object
+source      object
+target      object
+dtype: object
+```
+##### 3.查看是否有缺失值
+```
+Link_1:
+relation    0
+source      0
+target      0
+dtype: int64
+Link_2:
+relation    0
+source      0
+target      0
+dtype: int64
+Link_3:
+relation    0
+source      0
+target      0
+dtype: int64
+Link_4:
+relation    0
+source      0
+target      0
+dtype: int64
+Link_5:
+relation    0
+source      0
+target      0
+dtype: int64
+Link_6:
+relation    0
+source      0
+target      0
+dtype: int64
+```
+##### 4.查看是否有重复值
+```
+Link_1:
+1496
+Link_2:
+0
+Link_3:
+0
+Link_4:
+0
+Link_5:
+0
+Link_6:
+0
+```
+##### 5.删除重复值再查看数据大小
+```
+Link_1:(598504, 3)
+Link_2:(600000, 3)
+Link_3:(600000, 3)
+Link_4:(600000, 3)
+Link_5:(600000, 3)
+Link_6:(286986, 3)
+Total data:3285490
+```
+##### 6.查看数据分布情况
+```
+Link_1:
+       relation                                             source  \
+count    598504                                             598504   
+unique       11                                             409431   
+top     r_dns_a  Domain_85db7f74bf1e231c6f3b89583f6240593a918c2...   
+freq     373749                                                880   
+
+                                                   target  
+count                                              598504  
+unique                                             109384  
+top     Cert_fe794a69eacd63b21245bf4eda826222fc6c5862b...  
+freq                                                 4641  
+Link_2:
+       relation                                             source  \
+count    600000                                             600000   
+unique       10                                             478009   
+top     r_dns_a  Domain_3ca6ec6e7124cd1997531c0d97fc0bacaff1ae7...   
+freq     345425                                                283   
+
+                                                   target  
+count                                              600000  
+unique                                             125246  
+top     ASN_bfe47d08b0915207ce5f3b739e2bd60484069a0f05...  
+freq                                                 3487  
+Link_3:
+       relation                                             source  \
+count    600000                                             600000   
+unique       10                                             434822   
+top     r_dns_a  Domain_559e0ea5b3a75a355a974c5578a2e6cdfb68250...   
+freq     272817                                               4340   
+
+                                                   target  
+count                                              600000  
+unique                                             183984  
+top     Cert_fe794a69eacd63b21245bf4eda826222fc6c5862b...  
+freq                                                15155  
+Link_4:
+       relation                                             source  \
+count    600000                                             600000   
+unique       10                                             515801   
+top     r_dns_a  Domain_7d4f8ce4876d04ed9f58e89db5dfb2b80bc139c...   
+freq     497840                                                100   
+
+                                                   target  
+count                                              600000  
+unique                                              65736  
+top     ASN_bfe47d08b0915207ce5f3b739e2bd60484069a0f05...  
+freq                                                 4612  
+Link_5:
+       relation                                             source  \
+count    600000                                             600000   
+unique       10                                             403992   
+top     r_dns_a  Domain_30a5a1532f23b69968262facec401849975f811...   
+freq     377815                                                101   
+
+                                                   target  
+count                                              600000  
+unique                                             187360  
+top     Whois_Phone_5db6e647ee1a1f1b2819508de28e88d6f8...  
+freq                                                 2987  
+Link_6:
+       relation                                             source  \
+count    286986                                             286986   
+unique       10                                             213597   
+top     r_dns_a  Domain_661d2deb0323b132a5f1fd25e7c1281f1ee98c2...   
+freq     185430                                                100   
+
+                                                   target  
+count                                              286986  
+unique                                              74249  
+top     ASN_bfe47d08b0915207ce5f3b739e2bd60484069a0f05...  
+freq                                                 1258
+```
