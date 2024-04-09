@@ -1,12 +1,14 @@
 import pandas as pd
-import hashlib
 import os
 
 # 获取当前代码文件的目录路径
 current_directory = os.path.dirname(os.path.abspath(__file__))
 
-# 读取三个文件并进行处理
+# 合并列表
 node_df_list = []
+
+# 去除industry为空的行的合并列表
+node_df_list_delete_industry = []
 
 for i in range(1, 4):
     # 构建数据文件的相对路径
@@ -15,6 +17,9 @@ for i in range(1, 4):
 
     # 初始化重复行计数器
     total_duplicate_rows = 0
+
+    # 初始化industry值为空的行数计数器
+    total_null_industry_rows = 0
 
     # 1. 查看数据大小
     print(f"Size of Node_{i}.csv: {node_df.shape}")
@@ -47,9 +52,30 @@ for i in range(1, 4):
     # 7. 合并
     node_df_list.append(node_df)
 
-    # 8. 分隔符
+    # 8. 统计industry字段为空(即等于"[]")的行的行数
+    # 将 industry 字段为 "[]" 的行转换为 NaN
+    node_df['industry'].replace('[]', pd.NA, inplace=True)
+
+    null_industry_rows = node_df['industry'].isnull().sum()
+    total_null_industry_rows += null_industry_rows
+    print(f"Total null industry rows in Node_{i}.csv: {total_null_industry_rows}")
+
+    # 9. 删除industry字段为空的行
+    node_df_delete_industry = node_df.dropna(subset=['industry'])
+    node_df_list_delete_industry.append(node_df_delete_industry)
+
+    # 10. 分隔符
     print("-----------------------------------")
 
+# 合并去除industry为空的行的表
+final_node_df_delete_industry = pd.concat(node_df_list_delete_industry)
+
+# 输出去除industry为空的行
+final_node_df_delete_industry.to_csv(os.path.join(current_directory, '..', '..', 'DataVis', 'Dataset', 'nodes', 'Final_Node_delete_industry.csv'),
+                     index=False)
+
+# 输出去除industry为空的行的表的大小
+print(f"Size of Final_Node_delete_industry dataset: {final_node_df_delete_industry.shape}")
 
 # 合并三个数据集为一个
 final_node_df = pd.concat(node_df_list)
@@ -64,24 +90,12 @@ if not duplicate_rows_final.empty:
     final_total_duplicate_rows = len(duplicate_rows_final)
     print(f"Total duplicate rows in final dataset: {final_total_duplicate_rows}")
 else:
-    print("No duplicate rows in final dataset")
+    print("No duplicate rows in Final_Node dataset")
 
 # 查看合并后的数据大小
-print(f"Size of final dataset: {final_node_df.shape}")
+print(f"Size of Final_Node dataset: {final_node_df.shape}")
 
-    # . 对数据进行清洗和转换，以及其他操作
-    # 解密节点名称
-    # def decrypt_name(name):
-    #     # 在这里编写解密逻辑，这里使用简单的MD5解密示例
-    #     return hashlib.md5(name.encode()).hexdigest()
-    #
-    # node_df['name'] = node_df['name'].apply(decrypt_name)
-    #
-    # # 转换节点类型和行业类型为数值
-    # type_mapping = {'Domain': 0, 'IP': 1, 'Cert': 2, 'Whois_Name': 3, 'Whois_Phone': 4, 'Whois_Email': 5, 'IP_C': 6, 'ASN': 7}
-    # industry_mapping = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6, 'H': 7, 'I': 8}
-    #
-    # node_df['type'] = node_df['type'].map(type_mapping)
-    # node_df['industry'] = node_df['industry'].map(industry_mapping)
-
-    # node_df_list.append(node_df)
+# 输出合并后的数据集
+# index=False 表示不输出行索引
+final_node_df.to_csv(os.path.join(current_directory, '..', '..', 'DataVis', 'Dataset', 'nodes', 'Final_Node.csv'),
+                     index=False)
