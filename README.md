@@ -124,7 +124,7 @@ https://github.com/csuvis/CyberAssetGraphData
 
 ##### **图2. Link.csv 数据样本示例**
 
-![image-20240409124258411](picture\image-20240409124258411.png)
+![image-20240409124258411](picture/image-20240409124258411.png)
 
 
 
