@@ -18,7 +18,7 @@ ChinaVis2022 中国可视化与可视分析大会数据可视化竞赛——**�
 
 > ~/数据安全可视分析/官方提供文件/
 >
-> ![image-20240409102633326](C:\Users\21811\AppData\Roaming\Typora\typora-user-images\image-20240409102633326.png)
+> ![image-20240409102633326](picture\image-20240409102633326.png)
 
 ### 3.
 
@@ -90,7 +90,7 @@ https://github.com/csuvis/CyberAssetGraphData
 
 ##### **图1. Node.csv 数据样本示例**
 
-![image-20240409123636041](C:\Users\21811\AppData\Roaming\Typora\typora-user-images\image-20240409123636041.png)
+![image-20240409123636041](picture\image-20240409123636041.png)
 
 
 
@@ -128,7 +128,7 @@ https://github.com/csuvis/CyberAssetGraphData
 
 ##### **图2. Link.csv 数据样本示例**
 
-![image-20240409124258411](C:\Users\21811\AppData\Roaming\Typora\typora-user-images\image-20240409124258411.png)
+![image-20240409124258411](picture\image-20240409124258411.png)
 
 
 
@@ -210,28 +210,107 @@ No duplicate rows in Node_3.csv
 
 无重复行，故不做处理
 
-##### 5.合并数据集后重复行检测
+##### 5. 统计industry字段为空(即等于"[]")的行的行数
 
 ```
-No duplicate rows in final dataset
+Total null industry rows in Node_1.csv: 844762
+
+Total null industry rows in Node_2.csv: 864867
+
+Total null industry rows in Node_3.csv: 333773
+```
+
+##### 6.合并去除industry为空的行的表并输出文件
+
+```py
+final_node_df_delete_industry.to_csv(os.path.join(current_directory, '..', '..', 'DataVis', 'Dataset', 'nodes', 'Final_Node_delete_industry.csv'),
+                     index=False)
+```
+
+##### 7.查看去除industry为空的行的表的大小
+
+```
+Size of Final_Node_delete_industry dataset: (328156, 4)
+```
+
+##### 8.合并总数据集后进行重复行检测
+
+```
+No duplicate rows in Final_Node dataset
 ```
 
 无重复行，故不做处理
 
-##### 6.查看合并后的数据集的大小
+##### 9.输出合并后的总数据集文件
+
+```py
+final_node_df.to_csv(os.path.join(current_directory, '..', '..', 'DataVis', 'Dataset', 'nodes', 'Final_Node.csv'),
+                     index=False)
+```
+
+##### 10.查看合并后的总数据集的大小
 
 ```
-Size of final dataset: (2371558, 4)
+Size of Final_Node dataset: (2371558, 4)
 ```
 
 
 
 ##### **命令行输出**
 
-![image-20240409141529695](C:\Users\21811\AppData\Roaming\Typora\typora-user-images\image-20240409141529695.png)
+```
+Size of Node_1.csv: (1000000, 4)
+Data types of Node_1.csv:
+id          object
+name        object
+type        object
+industry    object
+dtype: object
+Missing values in Node_1.csv:
+id          0
+name        0
+type        0
+industry    0
+dtype: int64
+No duplicate rows in Node_1.csv
+Total null industry rows in Node_1.csv: 844762
+-----------------------------------
+Size of Node_2.csv: (1000000, 4)
+Data types of Node_2.csv:
+id          object
+name        object
+type        object
+industry    object
+dtype: object
+Missing values in Node_2.csv:
+id          0
+name        0
+type        0
+industry    0
+dtype: int64
+No duplicate rows in Node_2.csv
+Total null industry rows in Node_2.csv: 864867
+-----------------------------------
+Size of Node_3.csv: (371558, 4)
+Data types of Node_3.csv:
+id          object
+name        object
+type        object
+industry    object
+dtype: object
+Missing values in Node_3.csv:
+id          0
+name        0
+type        0
+industry    0
+dtype: int64
+No duplicate rows in Node_3.csv
+Total null industry rows in Node_3.csv: 333773
+-----------------------------------
+Size of Final_Node_delete_industry dataset: (328156, 4)
+No duplicate rows in Final_Node dataset
+Size of Final_Node dataset: (2371558, 4)
 
-![image-20240409141547375](C:\Users\21811\AppData\Roaming\Typora\typora-user-images\image-20240409141547375.png)
+进程已结束，退出代码为 0
+```
 
-![image-20240409141602255](C:\Users\21811\AppData\Roaming\Typora\typora-user-images\image-20240409141602255.png)
-
-![image-20240409141627323](C:\Users\21811\AppData\Roaming\Typora\typora-user-images\image-20240409141627323.png)
