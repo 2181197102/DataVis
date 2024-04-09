@@ -1,11 +1,17 @@
 import pandas as pd
 import hashlib
+import os
+
+# 获取当前代码文件的目录路径
+current_directory = os.path.dirname(os.path.abspath(__file__))
 
 # 读取三个文件并进行处理
 node_df_list = []
 
 for i in range(1, 4):
-    node_df = pd.read_csv(f'D:/course/DataVis/Dataset/nodes/Node_{i}.csv')
+    # 构建数据文件的相对路径
+    data_file_path = os.path.join(current_directory, '..', '..', 'DataVis', 'Dataset', 'nodes', f'Node_{i}.csv')
+    node_df = pd.read_csv(data_file_path)
 
     # 初始化重复行计数器
     total_duplicate_rows = 0
